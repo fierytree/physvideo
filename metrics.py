@@ -7,7 +7,7 @@ from tools.nltk import f, h
 from sklearn.metrics import f1_score
 from typing import List, Dict
 from PIL import Image
-import clip  # 需要安装OpenAI的CLIP库
+import clip
 
 
 class VideoMetricsCalculator:
@@ -92,9 +92,8 @@ class VideoMetricsCalculator:
         width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
         height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
         
-        # 读取一些帧用于CLIP处理
         frames = []
-        for i in range(min(10, frame_count)):  # 最多取10帧
+        for i in range(min(49, frame_count)): 
             ret, frame = cap.read()
             if ret:
                 # 将OpenCV BGR格式转换为RGB格式
@@ -126,7 +125,7 @@ class VideoMetricsCalculator:
         print(f"Video info: {data['frame_count']} frames, {data['width']}x{data['height']}")
         print("Computing optical flow and motion features...")
         
-        return {metric: metric_functions[metric] for metric in metrics_to_compute}  # 实际值会被覆盖
+        return {metric: metric_functions[metric] for metric in metrics_to_compute}
 
 
 def load(filename, n):
