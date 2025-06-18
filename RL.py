@@ -139,7 +139,7 @@ def train(epochs=10000, model_path="saved_policies"):
     policy = PolicyNetwork()
     ppo = PPO(policy, lr=3e-4)
     
-    max_episodes = epochs  # 使用命令行参数指定的epochs
+    max_episodes = epochs
     max_steps = 10
     
     for episode in range(max_episodes):
@@ -169,15 +169,13 @@ def train(epochs=10000, model_path="saved_policies"):
         
         if episode % 10 == 0:
             print(f"Episode {episode}, Reward: {episode_reward:.4f}")
-    
-    # 使用命令行参数指定的保存路径 
+     
     save_path = 'saved_policies/final_policy.pth'
     os.makedirs('saved_policies', exist_ok=True)
     torch.save(policy.state_dict(), save_path)
     print(f"Policy network saved to {save_path}")
 
 if __name__ == "__main__":
-    # 设置命令行参数解析
     parser = argparse.ArgumentParser(description='PPO Training for Physics Simulation')
     parser.add_argument('--epochs', type=int, default=50000,
                         help='Number of training epochs (default: 50000)')
@@ -186,5 +184,4 @@ if __name__ == "__main__":
     
     args = parser.parse_args()
     
-    # 使用命令行参数调用训练函数
     train(epochs=args.epochs, model_path=args.model_path)
