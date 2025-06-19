@@ -5,7 +5,7 @@ conda create -n physvideo python=3.9
 conda activate physvideo
 
 
-pip install -r requirements/requirements-cu121.txt
+pip install -r requirements.txt
 pip install -v . 
 pip install git+https://github.com/hpcaitech/TensorNVMe.git
 pip install git+https://github.com/hpcaitech/ColossalAI.git
