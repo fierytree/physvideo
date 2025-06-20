@@ -48,22 +48,22 @@ python RL.py --epochs 50000 --model_path ./ckpts/OpenSora-STDiT-v4-360p
 ```bash
 # single prompt
 CUDA_VISIBLE_DEVICES=1 python scripts/inference.py configs/opensora-v1-3/inference/t2v.py \
-  --num-frames 49 --resolution 360p --aspect-ratio 9:16 \
+  --num-frames 49 --resolution 360p --aspect-ratio 9:16 --save-dir samples/ \
   --prompt "a beautiful waterfall"
 
 # physvideobench
 CUDA_VISIBLE_DEVICES=1,2 torchrun --nproc_per_node 2 scripts/inference.py configs/opensora-v1-3/inference/t2v.py \
-  --num-frames 49 --resolution 360p --aspect-ratio 9:16 \
+  --num-frames 49 --resolution 360p --aspect-ratio 9:16 --save-dir samples/ \
   --prompt-path physvideobench.txt
 
 # ucf
 CUDA_VISIBLE_DEVICES=1,2 torchrun --nproc_per_node 2 scripts/inference.py configs/opensora-v1-3/inference/t2v.py \
-  --num-frames 49 --resolution 360p --aspect-ratio 9:16 \
+  --num-frames 49 --resolution 360p --aspect-ratio 9:16 --save-dir samples/ \
   --prompt-path ucf.txt
 
 # webvid
 CUDA_VISIBLE_DEVICES=1,2,3,4 torchrun --nproc_per_node 4 scripts/inference.py configs/opensora-v1-3/inference/t2v.py \
-  --num-frames 49 --resolution 360p --aspect-ratio 9:16 \
+  --num-frames 49 --resolution 360p --aspect-ratio 9:16 --save-dir samples/ \
   --prompt-path webvid.txt
 
 ```
